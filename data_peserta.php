@@ -61,6 +61,7 @@ require_once "libraries/database.php";
                             <?php } ?>
                         </tbody>
                     </table>
+                    <?php echo "<p><strong>".count($pesertas)."</strong> data ditemukan </p>"; ?>
                 </div>
             </div>
             <!-- /.col-lg-12 -->

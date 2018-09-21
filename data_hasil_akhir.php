@@ -2,22 +2,31 @@
 require_once "template/header.php";
 require_once "libraries/database.php";
 require_once "libraries/modules.php";
+$skemas = getPKAndNama('skema');
 ?>
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Report</h1>
+                <h1 class="page-header">Hasil Akhir</h1>
                     <div class="row" style="margin-bottom: 1em;">
                         <div class="col-md-12">
                             <form class="form-inline" method="POST">
                                 <div class="form-group">
-                                    <select name="sortir_skema" class="form-control">
-                                        <option value=""></option>
-                                        <option value=""></option>
+                                    <span>Filter berdasarkan: </span>
+                                    <select name="nama_skema" class="form-control">
+                                        <option value="">--- Jenis Skema ---</option>
+                                        <?php foreach ( $skemas as $skema ) { ?>
+                                            <option value="<?= $skema['NamaSkema']; ?>"><?= $skema['NamaSkema']; ?></option>
+                                        <?php } ?>
                                     </select>
-                                    <button type="submit" class="btn btn-info" name="cari">Cari</button>
+                                    <select name="kompetensi" class="form-control">
+                                        <option value="">--- Kompetensi ---</option>
+                                        <option value="K">Kompeten</option>
+                                        <option value="BK">Belum Kompeten</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-info" name="sort">Cari</button>
                                 </div>
                             </form>
                         </div>          
@@ -42,9 +51,26 @@ require_once "libraries/modules.php";
                         </thead>
                         <tbody>
                             <?php
-                            if ( isset($_POST['cari']) ) {
-                                $keyword = $_POST['keyword'];
-                                $masters = getAllLike('master', $keyword);
+                            if ( isset($_POST['sort']) ) {
+
+                                if ( $_POST['kompetensi'] !== '' ) {
+                                    $kompetensi = $_POST['kompetensi'];
+                                    $masters = getAllMaster([
+                                        'Hasil' => $kompetensi
+                                    ]);    
+                                } else {
+                                    $masters = getAllMaster();
+                                }
+
+                                if ( $_POST['nama_skema'] !== '' ) {
+                                    $nama_skema = $_POST['nama_skema'];
+                                    $masters = getAllMaster([
+                                        'NamaSkema' => $nama_skema
+                                    ]);    
+                                } else {
+                                    $masters = getAllMaster();
+                                }
+
                             } else {
                                 $masters = getAllMaster();
                             }
@@ -69,6 +95,7 @@ require_once "libraries/modules.php";
                             <?php } ?>
                         </tbody>
                     </table>
+                    <?php echo "<p><strong>".count($masters)."</strong> data ditemukan </p>"; ?>
                 </div>
             </div>
             <!-- /.col-lg-12 -->

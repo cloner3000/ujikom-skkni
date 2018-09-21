@@ -58,7 +58,7 @@ if ( isset($_POST['submit']) ) {
                                     </div>
                                     <div class="form-group">
                                         <button class="btn btn-danger" type="reset">Hapus</button>
-                                        <button type="submit" name="submit" class="btn btn-primary">Ubah</button>
+                                        <button type="submit" name="submit" class="btn btn-primary">Tambah</button>
                                     </div>
                                 </form>
                             </div>

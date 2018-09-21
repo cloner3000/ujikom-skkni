@@ -21,12 +21,11 @@ function hasilUjiKompetensi($nilai) {
         }
     }
 
-    //Konversi jumlah nilai yang kompeten dan tidak kompeten
+    //Hitung jumlah nilai yang kompeten dan tidak kompeten
     $total_passed = count($passed);
     $total_not_passed = count($not_passed);
     
-    
-    if ( $total_passed >= 2 ) {
+    if ( $total_passed >= 2 && $total_not_passed <= 2 ) {
         //Jika jumlah nilai yang lulus lebih dari 2, maka return 'K'
         $hasil = 'K';
     } else {

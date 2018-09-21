@@ -21,8 +21,10 @@ if ( mysqli_connect_errno() ) {
 function getAll($table) {
 
     global $conn;
+    
 
     $query = mysqli_query($conn, "SELECT * FROM {$table}");
+
     $result = [];
     while ( $row = mysqli_fetch_array($query, MYSQLI_ASSOC) ) {
         $result[] = $row;
@@ -109,11 +111,39 @@ function getPKAndNama($table){
  * getAllMaster
  * Ambil semua data (hasil akhir)
  *
+ * @param array $where
  * @return array $result
  */
-function getAllMaster() {
+function getAllMaster($where = null) {
 
     global $conn;
+
+    if ( $where != null ) {
+
+        $fields = [];
+        foreach ($where as $key => $value) {
+            $fields[] = "{$key} = '$value'";
+        }
+
+        $where_clause = implode(' ', $fields);
+        $sql    = "SELECT peserta.NoPeserta,
+                        peserta.Nama,
+                        skema.NoSkema,
+                        skema.NamaSkema,
+                        skema.Ruang,
+                        hasil.NilaiP,
+                        hasil.NilaiI,
+                        hasil.NilaiT
+                FROM hasil
+                INNER JOIN peserta ON hasil.NoPeserta = peserta.NoPeserta
+                INNER JOIN skema ON hasil.NoSkema = skema.NoSkema WHERE {$where_clause} ORDER BY NoPeserta ASC";
+        $query  = mysqli_query($conn, $sql);
+        $result = [];
+        while ( $row = mysqli_fetch_array($query, MYSQLI_ASSOC) ) {
+            $result[] = $row;
+        }
+        return $result;
+    }
 
     $sql    = "SELECT peserta.NoPeserta,
                     peserta.Nama,
@@ -125,7 +155,8 @@ function getAllMaster() {
                     hasil.NilaiT
             FROM hasil
             INNER JOIN peserta ON hasil.NoPeserta = peserta.NoPeserta
-            INNER JOIN skema ON hasil.NoSkema = skema.NoSkema";
+            INNER JOIN skema ON hasil.NoSkema = skema.NoSkema ORDER BY NoPeserta ASC";
+
     $query  = mysqli_query($conn, $sql);
     $result = [];
     while ( $row = mysqli_fetch_array($query, MYSQLI_ASSOC) ) {
@@ -213,7 +244,7 @@ function insert($table, $data) {
     foreach ($data as $key => $value) {
         $values[] = "'$value' ";
     }
-    $new_values = implode(' , ', $values);
+    $new_values = implode(', ', $values);
 
     $query = mysqli_query($conn, "INSERT INTO {$table} VALUES({$new_values})");
 
