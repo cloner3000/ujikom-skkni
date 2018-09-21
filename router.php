@@ -1,7 +1,7 @@
 <?php
 require_once "template/header.php";
-require_once "libraries/database.php";
-require_once "libraries/modules.php";
+require_once "libraries/database.module.php";
+require_once "libraries/module.php";
 
 if ( isset($_GET['page']) ) {
     $page = $_GET['page'];

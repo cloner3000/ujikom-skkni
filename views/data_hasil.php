@@ -7,10 +7,10 @@ require_once "libraries/database.php";
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Data Peserta</h1>
+                <h1 class="page-header">Data Hasil</h1>
                 <div class="row" style="margin-bottom: 1em;">
                     <div class="col-md-2">
-                        <a href="form_tambah_peserta.php" class="btn btn-primary">Tambah</a>
+                        <a href="?page=form_tambah_hasil" class="btn btn-primary">Tambah</a>
                     </div>
                     <div class="col-md-10">
                         <form class="form-inline" method="POST">
@@ -25,43 +25,43 @@ require_once "libraries/database.php";
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
+                                <th>ID Skema</th>
+                                <th>No. Skema</th>
                                 <th>No. Peserta</th>
-                                <th>Nama</th>
-                                <th>Alamat</th>
-                                <th>Email</th>
-                                <th>Telp</th>
+                                <th>Nilai P</th>
+                                <th>Nilai I</th>
+                                <th>Nilai T</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                                 if ( isset($_POST['cari']) ) {
-
                                     $keyword = $_POST['keyword'];
-                                    $pesertas = getAllLike('peserta', $keyword);
-                                    
+                                    $hasils = getAllLike('hasil', $keyword);
                                 } else {
-
-                                    $pesertas = getAll('peserta');
+                                    $hasils = getAll('hasil');
                                 }
 
-                                foreach($pesertas as $peserta){
+                               
+                                foreach($hasils as $hasil){
                             ?>
                             <tr>
-                                <td><?= $peserta['NoPeserta']; ?></td>
-                                <td><?= $peserta['Nama']; ?></td>
-                                <td><?= $peserta['Alamat']; ?></td>
-                                <td><?= $peserta['Email']; ?></td>
-                                <td><?= $peserta['Telp']; ?></td>
+                                <td><?= $hasil['IDHasil']; ?></td>
+                                <td><?= $hasil['NoSkema']; ?></td>
+                                <td><?= $hasil['NoPeserta']; ?></td>
+                                <td><?= $hasil['NilaiP']; ?></td>
+                                <td><?= $hasil['NilaiI']; ?></td>
+                                <td><?= $hasil['NilaiT']; ?></td>
                                 <td style="min-width: 150px;">
-                                    <a href="form_edit_peserta.php?id=<?= $peserta['NoPeserta']; ?>" class="btn btn-success"> Edit </a>
-                                    <a href="hapus_peserta.php?id=<?= $peserta['NoPeserta']; ?>" class="btn btn-danger" onclick="return confirm('Anda yakin akan menghapus data ini?')"> Hapus</a>
+                                    <a href="?page=form_edit_hasil&id=<?= $hasil['IDHasil']; ?>" class="btn btn-success"> Edit </a>
+                                    <a href="./controller/hapus_hasil.php?id=<?= $hasil['IDHasil']; ?>" class="btn btn-danger" onclick="return confirm('Anda yakin akan menghapus data ini?')"> Hapus</a>
                                 </td>
                             </tr>
                             <?php } ?>
                         </tbody>
                     </table>
-                    <?php echo "<p><strong>".count($pesertas)."</strong> data ditemukan </p>"; ?>
+                    <?php echo "<p><strong>".count($hasils)."</strong> data ditemukan </p>"; ?>
                 </div>
             </div>
             <!-- /.col-lg-12 -->

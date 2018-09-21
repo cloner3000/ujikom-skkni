@@ -1,6 +1,6 @@
 <?php
 
-require_once "libraries/database.php";
+require_once "../libraries/database.php";
 
 if ( isset($_GET['id'] ) ) {
 
@@ -10,7 +10,7 @@ if ( isset($_GET['id'] ) ) {
         'IDHasil' => $id
     ]);
     if ( $delete > 0 ) {
-        header('location: data_hasil.php');
+        header('location: ../?page=data_hasil');
     } else {
         die('Terjadi kesalahan!');
     }

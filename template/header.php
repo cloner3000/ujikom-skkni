@@ -73,19 +73,19 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Data Master<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="data_peserta.php">Data Peserta</a>
+                                    <a href="?page=data_peserta">Data Peserta</a>
                                 </li>
                                 <li>
-                                    <a href="data_skema.php">Data Skema</a>
+                                    <a href="?page=data_skema">Data Skema</a>
                                 </li>
                                 <li>
-                                    <a href="data_hasil.php">Data Hasil</a>
+                                    <a href="?page=data_hasil">Data Hasil</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="data_hasil_akhir.php"><i class="fa fa-dashboard fa-fw"></i> Hasil Akhir</a>
+                            <a href="?page=data_hasil_akhir"><i class="fa fa-dashboard fa-fw"></i> Hasil Akhir</a>
                         </li>
                         
                     </ul>

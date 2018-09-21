@@ -7,10 +7,10 @@ require_once "libraries/database.php";
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Data Skema</h1>
+                <h1 class="page-header">Data Peserta</h1>
                 <div class="row" style="margin-bottom: 1em;">
                     <div class="col-md-2">
-                        <a href="form_tambah_skema.php" class="btn btn-primary">Tambah</a>
+                        <a href="?page=form_tambah_peserta" class="btn btn-primary">Tambah</a>
                     </div>
                     <div class="col-md-10">
                         <form class="form-inline" method="POST">
@@ -25,36 +25,43 @@ require_once "libraries/database.php";
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>No. Skema</th>
-                                <th>Nama Skema</th>
-                                <th>Ruang</th>
+                                <th>No. Peserta</th>
+                                <th>Nama</th>
+                                <th>Alamat</th>
+                                <th>Email</th>
+                                <th>Telp</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                                 if ( isset($_POST['cari']) ) {
+
                                     $keyword = $_POST['keyword'];
-                                    $skemas = getAllLike('skema', $keyword);
+                                    $pesertas = getAllLike('peserta', $keyword);
+                                    
                                 } else {
-                                    $skemas = getAll('skema');
+
+                                    $pesertas = getAll('peserta');
                                 }
-                                
-                                foreach($skemas as $skema){
+
+                                foreach($pesertas as $peserta){
                             ?>
                             <tr>
-                                <td><?= $skema['NoSkema']; ?></td>
-                                <td><?= $skema['NamaSkema']; ?></td>
-                                <td><?= $skema['Ruang']; ?></td>
+                                <td><?= $peserta['NoPeserta']; ?></td>
+                                <td><?= $peserta['Nama']; ?></td>
+                                <td><?= $peserta['Alamat']; ?></td>
+                                <td><?= $peserta['Email']; ?></td>
+                                <td><?= $peserta['Telp']; ?></td>
                                 <td style="min-width: 150px;">
-                                    <a href="form_edit_skema.php?id=<?= $skema['NoSkema']; ?>" class="btn btn-success"> Edit </a>
-                                    <a href="hapus_skema.php?id=<?= $skema['NoSkema']; ?>" class="btn btn-danger" onclick="return confirm('Anda yakin akan menghapus data ini?')"> Hapus</a>
+                                    <a href="?page=form_edit_peserta&id=<?= $peserta['NoPeserta']; ?>" class="btn btn-success"> Edit </a>
+                                    <a href="./controller/hapus_peserta.php?id=<?= $peserta['NoPeserta']; ?>" class="btn btn-danger" onclick="return confirm('Anda yakin akan menghapus data ini?')"> Hapus</a>
                                 </td>
                             </tr>
                             <?php } ?>
                         </tbody>
                     </table>
-                    <?php echo "<p><strong>".count($skemas)."</strong> data ditemukan </p>"; ?>
+                    <?php echo "<p><strong>".count($pesertas)."</strong> data ditemukan </p>"; ?>
                 </div>
             </div>
             <!-- /.col-lg-12 -->

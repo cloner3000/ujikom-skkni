@@ -1,26 +1,7 @@
 <?php
 require_once "template/header.php";
 require_once "libraries/database.php";
-
-$kode_baru = getNewPrimaryKey('NoPeserta', 'peserta');
-
-if ( isset($_POST['submit']) ) {
-
-    $insert = insert('peserta', [
-        'NoPeserta' => $_POST['no_peserta'],
-        'Nama'      => $_POST['nama'],
-        'Alamat'    => $_POST['alamat'],
-        'Email'     => $_POST['email'],
-        'Telp'      => $_POST['telp']
-    ]);
-
-    if ( $insert > 0 ) {
-        header('location: data_peserta.php');
-    } else {
-        die('Terjadi kesalahan!');
-    }
-}
-    
+require_once "./controller/tambah_peserta.php";    
 ?>
 <!-- Page Content -->
 <div id="page-wrapper">
