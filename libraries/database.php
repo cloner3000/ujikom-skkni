@@ -13,6 +13,7 @@ if ( mysqli_connect_errno() ) {
 
 /**
  * getAll
+ * Ambil semua data pada suatu tabel
  *
  * @param string $table
  * @return array $result
@@ -31,6 +32,7 @@ function getAll($table) {
 
 /**
  * getById
+ * Ambil satu record berdasarkan ID
  *
  * @param string $table
  * @param array $id Array of Primary Key Field paired with the Value
@@ -56,7 +58,8 @@ function getById($table, $id) {
 
 /**
  * getNewPrimaryKey
- *
+ * Ambil nomor Primary Key baru, mirip seperti Auto Increment
+ * 
  * @param string $field
  * @param string $table
  * @return int
@@ -87,11 +90,11 @@ function getPKAndNama($table){
 
     switch ($table) {
         case 'skema':
-                $query = mysqli_query($conn, "SELECT NoSkema, NamaSkema FROM skema");
+            $query = mysqli_query($conn, "SELECT NoSkema, NamaSkema FROM skema");
             break;
         
         case 'peserta':
-                $query = mysqli_query($conn, "SELECT NoPeserta, Nama FROM peserta");
+            $query = mysqli_query($conn, "SELECT NoPeserta, Nama FROM peserta");
             break;
     }
 
@@ -104,6 +107,7 @@ function getPKAndNama($table){
 
 /**
  * getAllMaster
+ * Ambil semua data (hasil akhir)
  *
  * @return array $result
  */
@@ -132,6 +136,7 @@ function getAllMaster() {
 
 /**
  * getAllLike
+ * Ambil data berdasarkan keyword pencarian
  *
  * @param string $table
  * @param string $keyword
@@ -193,6 +198,7 @@ function getAllLike($table, $keyword) {
 
 /**
  * insert
+ * Memasukkan data
  *
  * @param string $table
  * @param array $data
@@ -216,6 +222,7 @@ function insert($table, $data) {
 
 /**
  * update
+ * Mengubah data
  *
  * @param string $table
  * @param array $data
@@ -247,6 +254,7 @@ function update($table, $data, $id) {
 
 /**
  * delete
+ * Menghapus data
  *
  * @param string $table
  * @param array $id

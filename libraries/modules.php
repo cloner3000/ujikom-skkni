@@ -10,39 +10,31 @@ function hasilUjiKompetensi($nilai) {
 
     $passed = [];
     $not_passed = [];
+    //Loop semua nilai
     foreach ($nilai as $value) {
         if ( $value >= 60 ) {
+            //Simpan nilai yang kompeten kedalam array $passed
             $passed[] = $value;
         } else {
+            //Simpan nilai yang tidak kompeten kedalam array $not_passed
             $not_passed[] = $value;
         }
     }
 
+    //Konversi jumlah nilai yang kompeten dan tidak kompeten
     $total_passed = count($passed);
     $total_not_passed = count($not_passed);
     
+    
     if ( $total_passed >= 2 ) {
+        //Jika jumlah nilai yang lulus lebih dari 2, maka return 'K'
         $hasil = 'K';
     } else {
+        //Selain itu, misal: Nilai yang kompeten hanya satu. Maka return 'BK'
         $hasil = 'BK';
     }
 
     return $hasil;
-}
-
-/**
- * sortir
- * Callback function to convert each 'nilai' to 'K' if passed
- *
- * @param [type] $value
- * @return string
- */
-function sortir($value) {
-    if ( $value >= 60 ) {
-        return 'K';
-    } else {
-        return 'BK';
-    }
 }
 
 /**
@@ -64,6 +56,7 @@ function convertToAlphabet($nilai) {
 
 /**
  * convertHasilToKeterangan
+ * Konversi alfabet keterangan menjadi keterangan lengkap
  *
  * @param string $hasil
  * @return string
