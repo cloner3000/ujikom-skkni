@@ -165,6 +165,29 @@ function getAllMaster($where = null) {
     return $result;
 }
 
+function getAllMasterSkemaKompetensi($skema, $kompetensi) {
+
+    global $conn;
+
+    $sql    = "SELECT peserta.NoPeserta,
+                    peserta.Nama,
+                    skema.NoSkema,
+                    skema.NamaSkema,
+                    skema.Ruang,
+                    hasil.NilaiP,
+                    hasil.NilaiI,
+                    hasil.NilaiT
+            FROM hasil
+            INNER JOIN peserta ON hasil.NoPeserta = peserta.NoPeserta
+            INNER JOIN skema ON hasil.NoSkema = skema.NoSkema WHERE Hasil = '{$kompetensi}' AND NamaSkema = '{$skema}' ORDER BY NoPeserta ASC";
+    $query  = mysqli_query($conn, $sql);
+    $result = [];
+    while ( $row = mysqli_fetch_array($query, MYSQLI_ASSOC) ) {
+        $result[] = $row;
+    }
+    return $result;
+}
+
 /**
  * getAllLike
  * Ambil data berdasarkan keyword pencarian

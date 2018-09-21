@@ -1,6 +1,6 @@
 <?php
 
-require_once '../config.php';
+require_once './config.php';
 
 $kode_baru = getNewPrimaryKey('NoSkema', 'skema');
 

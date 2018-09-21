@@ -42,7 +42,6 @@ require_once "libraries/database.php";
                                 } else {
                                     $hasils = getAll('hasil');
                                 }
-
                                
                                 foreach($hasils as $hasil){
                             ?>

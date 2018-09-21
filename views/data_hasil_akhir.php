@@ -58,17 +58,19 @@ $skemas = getPKAndNama('skema');
                                     $masters = getAllMaster([
                                         'Hasil' => $kompetensi
                                     ]);    
-                                } else {
-                                    $masters = getAllMaster();
-                                }
-
-                                if ( $_POST['nama_skema'] !== '' ) {
+                                } else if( $_POST['nama_skema'] !== '') {
                                     $nama_skema = $_POST['nama_skema'];
                                     $masters = getAllMaster([
                                         'NamaSkema' => $nama_skema
                                     ]);    
                                 } else {
                                     $masters = getAllMaster();
+                                }
+
+                                if ( $_POST['kompetensi'] !== '' && $_POST['nama_skema'] !== '' ) {
+                                    $kompetensi = $_POST['kompetensi'];
+                                    $nama_skema = $_POST['nama_skema'];
+                                    $masters = getAllMasterSkemaKompetensi($nama_skema, $kompetensi); 
                                 }
 
                             } else {

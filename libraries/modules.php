@@ -65,6 +65,6 @@ function convertHasilToKeterangan($hasil) {
     if ( $hasil == 'K' ) {
         return 'Kompeten';
     } else {
-        return 'Tidak Kompeten';
+        return 'Belum Kompeten';
     }
 }

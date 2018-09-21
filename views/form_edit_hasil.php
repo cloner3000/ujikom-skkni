@@ -1,7 +1,9 @@
 <?php
 require_once "template/header.php";
 require_once "libraries/database.php";
-require_once "./controller/edit_hasil.php";    
+require_once "./controller/edit_hasil.php";
+$skemas = getPKAndNama('skema');    
+$pesertas = getPKAndNama('peserta');    
 ?>
 <!-- Page Content -->
 <div id="page-wrapper">
@@ -24,11 +26,19 @@ require_once "./controller/edit_hasil.php";
                                 </div>
                                 <div class="form-group">
                                     <label>No Skema</label>
-                                    <input type="number" class="form-control" name="no_skema" placeholder="No Skema" value="<?= $hasil['NoSkema']; ?>">
+                                    <select name="no_skema" class="form-control">
+                                        <?php foreach($skemas as $skema){ ?>
+                                            <option value="<?= $skema['NoSkema']; ?>" <?php if ($hasil['NoSkema'] == $skema['NoSkema']) { echo 'selected'; } ?> ><?= $skema['NoSkema']." - ".$skema['NamaSkema'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label>No Peserta</label>
-                                    <input type="number" class="form-control" name="no_peserta" placeholder="No Peserta" value="<?= $hasil['NoPeserta']; ?>">
+                                    <select name="no_peserta"class="form-control">
+                                        <?php foreach($pesertas as $peserta){ ?>
+                                            <option value="<?= $peserta['NoPeserta']; ?>" <?php if ($hasil['NoPeserta'] == $peserta['NoPeserta']) { echo 'selected'; } ?> ><?= $peserta['NoPeserta']." - ".$peserta['Nama'] ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Nilai Praktek</label>
