@@ -1,5 +1,7 @@
 <?php
 
+require_once '../config.php';
+
 $kode_baru = getNewPrimaryKey('IDHasil', 'hasil');
 
 $data_skema   = getPKAndNama('skema');

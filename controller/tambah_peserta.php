@@ -1,5 +1,7 @@
 <?php
 
+require_once '../config.php';
+
 $kode_baru = getNewPrimaryKey('NoPeserta', 'peserta');
 
 if ( isset($_POST['submit']) ) {

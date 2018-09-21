@@ -1,6 +1,4 @@
 <?php
-require_once "template/header.php";
-require_once "libraries/database.php";
 require_once "./controller/tambah_skema.php";
 ?>
 <!-- Page Content -->
@@ -49,5 +47,3 @@ require_once "./controller/tambah_skema.php";
     <!-- /.container-fluid -->
 </div>
 <!-- /#page-wrapper -->
-
-<?php require_once "template/footer.php"; ?>
